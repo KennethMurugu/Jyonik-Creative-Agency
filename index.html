@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jyonik Creative Agency | Home</title>
+	<meta charset="utf-8">
+	<!-- Vendor CSS -->
+	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!-- Vendor scripts -->
+	<script type="text/javascript" src="./vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!-- Vendor fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<!-- Slider -->
+	<link rel="stylesheet" type="text/css" href="slider/engine1/style.css" />
+	<script type="text/javascript" src="slider/engine1/jquery.js"></script>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+
+	<script type="text/javascript">
+		$(window).load(function () {
+			$('.service_row a').each(function () {
+				$(this).click(function(event) {
+					event.preventDefault();
+					console.log("READ MORE");
+				});
+			})
+		});
+	</script>
+</head>
+<body>
+	<div id="main_wrapper"> <!-- Wrapper for all page content -->
+		<div class="nav_wrapper">
+			<div id="page_logo">
+					<img src="./img/logo.png">
+			</div>
+			<nav id="page_nav">
+				<ul>
+					<li><a href="#" class="active">HOME</a></li>
+					<li>~</li>
+					<li><a href="#">ABOUT US</a></li>
+					<li>~</li>
+					<li><a href="#">SERVICES</a></li>
+					<li>~</li>
+					<li><a href="#">PORTFOLIO</a></li>
+					<li>~</li>
+					<li><a href="#">TEAM</a></li>
+					<li>~</li>
+					<li><a href="#">CONTACT US</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div id="slider_container">
+				<!-- <span><i class="fa fa-arrow-circle-left" id="slide_arrow_left"></i></span>
+				<span><i class="fa fa-arrow-circle-right" id="slide_arrow_right"></i></span> -->
+			<div id="wowslider-container1">
+				<div class="ws_images"><ul>
+						<li><img src="slider/data1/images/slider1.jpg" alt="slider1" title="slider1" id="wows1_0"/></li>
+						<li><img src="slider/data1/images/slider2.jpg" alt="carousel bootstrap" title="slider2" id="wows1_1"/></a></li>
+						<li><img src="slider/data1/images/slider3.jpg" alt="slider3" title="slider3" id="wows1_2"/></li>
+					</ul>
+				</div>
+				<div class="ws_bullets">
+					<div>
+						<a href="#" title="slider1"><span><img src="slider/data1/tooltips/slider1.jpg" alt="slider1"/>1</span></a>
+						<a href="#" title="slider2"><span><img src="slider/data1/tooltips/slider2.jpg" alt="slider2"/>2</span></a>
+						<a href="#" title="slider3"><span><img src="slider/data1/tooltips/slider3.jpg" alt="slider3"/>3</span></a>
+					</div>
+				</div>
+				<!-- <div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.com">html5 slider</a> by WOWSlider.com v8.2</div> -->
+				<div class="ws_shadow"></div>
+			</div>	
+			<script type="text/javascript" src="slider/engine1/wowslider.js"></script>
+			<script type="text/javascript" src="slider/engine1/script.js"></script>
+		</div>
+
+		<div id="main_content">
+			<div class="row" id="row_about_us">
+				<div class="col-sm-5" id="row_about_us_img">
+					<img src="./img/question-mark-2.jpg" >
+				</div>
+
+				<div class="col-sm-7" id="row_about_us_content">
+					<h3>ABOUT US</h3>
+					<hr style="border:2px solid #cb3526; width:15%;">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<button id="row_about_us_content_btn" class="btn_default">OUR SERVICES</button>
+				</div>
+			</div>
+
+			<div class="row" id="row_specialized_in">
+				<div class="col-sm-6">
+					<p>WEB DESIGN</p>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="95"
+					  aria-valuemin="0" aria-valuemax="100" style="width:95%">
+					    <span>95%</span>
+					  </div>
+					</div>
+					<p>GRAPHIC DESIGN</p>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="90"
+					  aria-valuemin="0" aria-valuemax="100" style="width:90%">
+					    <span>90%</span>
+					  </div>
+					</div> 
+					<p>WORDPRESS</p>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="85"
+					  aria-valuemin="0" aria-valuemax="100" style="width:85%">
+					    <span>85%</span>
+					  </div>
+					</div>  
+				</div>
+				<div class="col-sm-6">
+					<p>WEB DEVELOPMENT</p>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="95"
+					  aria-valuemin="0" aria-valuemax="100" style="width:95%">
+					    <span>90%</span>
+					  </div>
+					</div>
+					<p>SEO</p>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="95"
+					  aria-valuemin="0" aria-valuemax="100" style="width:95%">
+					    <span>95%</span>
+					  </div>
+					</div> 
+					<p>JQUERY</p>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="95"
+					  aria-valuemin="0" aria-valuemax="100" style="width:95%">
+					    <span>95%</span>
+					  </div>
+					</div> 
+				</div>
+			</div><!-- End row "speicalized in" -->
+
+			<div class="row" id="row_our_services_container">
+				<div id="row_our_services">
+					<div class="col-sm-4 service_row">
+						<div class="row">
+							<div class="col-sm-2">
+								<p><i><span class="fa fa-server"></span></i></p>
+							</div>
+							<div class="col-sm-10">
+								<h4>Web Development</h4>
+								<p>Some text text text text text text </p>
+								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<p><i><span class="fa fa-magic"></span></i></p>
+							</div>
+							<div class="col-sm-10">
+								<h4>Graphic Design</h4>
+								<p>Some text text text text text text </p>
+								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 service_row">
+						<div class="row">
+							<div class="col-sm-2">
+								<p><i><span class="fa fa-code"></span></i></p>
+							</div>
+							<div class="col-sm-10">
+								<h4>Wordpress</h4>
+								<p>Some text text text text text text </p>
+								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<p><i><span class="fa fa-pencil-square-o"></span></i></p>
+							</div>
+							<div class="col-sm-10">
+								<h4>Web Design</h4>
+								<p>Some text text text text text text </p>
+								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 service_row">
+						<div class="row">
+							<div class="col-sm-2">
+								<p><i><span class="fa fa-gift"></span></i></p>
+							</div>
+							<div class="col-sm-10">
+								<h4>Branding</h4>
+								<p>Some text text text text text text </p>
+								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<p><i><span class="fa fa-search"></span></i></p>
+							</div>
+							<div class="col-sm-10">
+								<h4>SEO</h4>
+								<p>Some text text text text text text </p>
+								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- End Our Services Row -->
+
+			<!-- Row "Our Work" -->
+			<div class="row" id="row_our_work">
+				<h3>OUR WORKS</h3>
+				<ul id="row_our_work_list">
+					<li><a href="#" class="active">ALL</a></li>
+					<li>/</li>
+					<li><a href="#">WEB DEVELOPMENT</a></li>
+					<li>/</li>
+					<li><a href="#">WEB DESIGN</a></li>
+					<li>/</li>
+					<li><a href="#">WORDPRESS</a></li>
+					<li>/</li>
+					<li><a href="#">SEO</a></li>
+					<li>/</li>
+					<li><a href="#">GRAPHIC DESIGN</a></li>
+				</ul>
+
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-12 row_our_work_content" >
+							<img src="./img/wordpress.jpg" >
+							<p class="row_our_work_content_label">Wordpress</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 row_our_work_content">
+							<img src="./img/branding2.jpg">
+							<p class="row_our_work_content_label">Branding</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-12 row_our_work_content">
+							<img src="./img/graphic-design.jpg">
+							<p class="row_our_work_content_label">Graphic Design</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 row_our_work_content">
+							<img src="./img/seo1.jpg">
+							<p class="row_our_work_content_label" style="left:40%;padding-left:20px;padding-right:20px;">SEO</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-12 row_our_work_content">
+							<img src="./img/web-design1.jpg">
+							<p class="row_our_work_content_label">Web Design</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 row_our_work_content">
+							<img src="./img/web-design2.png">
+							<p class="row_our_work_content_label" style="left:18%;">Web Development</p>
+						</div>
+					</div>		
+				</div>
+				<button class="btn_default">LOAD MORE</button>
+			</div><!-- End row "Our Work" -->
+
+			<!-- Progress row -->
+			<div class="row" id="row_progress_container">
+				<div class="row" id="row_progress">
+					<div class="col-sm-3 row_progress_content">
+						<i><span class="fa fa-smile-o"></span></i>
+						<h4>999</h4>
+						<p>HAPPY CLIENTS</p>
+					</div>
+					<div class="col-sm-3 row_progress_content">
+						<i><span class="fa fa-code"></span></i>
+						<h4>999</h4>
+						<p>LINES OF CODE</p>
+					</div>
+					<div class="col-sm-3 row_progress_content">
+						<i><span class="fa fa-trophy"></span></i>
+						<h4>999</h4>
+						<p>AWARDS WON</p>
+					</div>
+					<div class="col-sm-3 row_progress_content">
+						<i><span class="fa fa-coffee"></span></i>
+						<h4>999</h4>
+						<p>CUPS OF COFFEE</p>
+					</div>
+				</div>
+			</div> <!-- End Progress row -->
+
+			<!-- The Team -->
+			<div class="row" id="row_team">
+				<div class="col-sm-4 row_team_content">
+					<div class="row_team_content_img_container">
+						<ul class="row_team_content_social">
+							<li><a href="#"><i><span class="fa fa-instagram"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-facebook"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-twitter"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-google-plus"></span></i></a></li>
+						</ul>
+						<img src="./img/team1.jpg">
+					</div>
+					<h4 class="row_team_content_name">JOHN DOE</h4>
+					<p>Creative Director</p>
+				</div>
+				<div class="col-sm-4 row_team_content">
+					<div class="row_team_content_img_container">
+						<ul class="row_team_content_social">
+							<li><a href="#"><i><span class="fa fa-instagram"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-facebook"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-twitter"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-google-plus"></span></i></a></li>
+						</ul>
+						<img src="./img/team2.jpg">
+					</div>
+					<h4 class="row_team_content_name">JANE DOE</h4>
+					<p>Head of Sales</p>
+				</div>
+				<div class="col-sm-4 row_team_content">
+					<div class="row_team_content_img_container">
+						<ul class="row_team_content_social">
+							<li><a href="#"><i><span class="fa fa-instagram"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-facebook"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-twitter"></span></i></a></li>
+							<li><a href="#"><i><span class="fa fa-google-plus"></span></i></a></li>
+						</ul>
+						<img src="./img/team3.jpg">
+					</div>
+					<h4 class="row_team_content_name">PETER DOE</h4>
+					<p>Regional Director</p>
+				</div>
+			</div><!-- End Team row -->
+
+			<div class="row" id="row_why_us">
+				<div class="col-sm-6">
+					<h3>WHY US</h3>
+					<hr style="border:2px solid #cb3526; width:15%;">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi.</p>
+					<ul id="row_why_us_list">
+						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt</p></li>
+						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt</p></li>
+						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt</p></li>
+						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt</p></li>
+					</ul>
+				</div>
+				<div class="col-sm-6">
+					<h3>WHY US</h3>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/viv-49DL8jY" frameborder="0" allowfullscreen id="row_why_us_video_embed"></iframe>
+				</div>
+			</div>
+
+			<div class="row" id="row_contact_us">
+				<h3>CONTACT US</h3>
+				<hr style="border:2px solid #cb3526; width:5%; margin: 0 auto;">
+			</div>
+
+			<!-- Modal for services 'READ MORE' -->
+			<!-- Modal -->
+			<div id="modal_our_service" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h3 class="modal-title">Modal Header</h3>
+			      </div>
+			      <div class="modal-body">
+			        <p>Some text in the modal.</p>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- End Modal -->
+		</div><!-- End Main Content -->
+	</div><!-- End Main Content Wrapper -->
+</body>
+</html>
