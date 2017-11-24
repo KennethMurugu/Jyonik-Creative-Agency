@@ -7,26 +7,102 @@
 	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./vendor/font-awesome-4.7.0/css/font-awesome.min.css">
 	<!-- Vendor scripts -->
-	<script type="text/javascript" src="./vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="slider/engine1/jquery.js"></script>
+	<!-- <script type="text/javascript" src="./vendor/jquery/jquery-3.2.1.min.js"></script> -->
 	<script type="text/javascript" src="./vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!-- Vendor fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<!-- Slider -->
 	<link rel="stylesheet" type="text/css" href="slider/engine1/style.css" />
-	<script type="text/javascript" src="slider/engine1/jquery.js"></script>
+	<!-- <script type="text/javascript" src="slider/engine1/jquery.js"></script> -->
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
-
+	<!-- Page Scripts -->
 	<script type="text/javascript">
+
+		function teamModal(elem){
+			$('#pageModal').modal();
+			var name = elem.parent().find('.row_team_content_name').html();
+			var role = elem.parent().find('.row_team_content_role').html();
+			var img = elem.parent().find('.row_team_content_img_container img').attr("src");
+			var quote = elem.parent().find('.row_team_content_quote').html();
+			console.log("MEMBER NAME: "+ name+"\n IMAGE: "+img);
+
+			$("#pageModal").find('.modal-title').html(""+name+", "+role);
+			$("#pageModal").find('#modal_body_img').attr('src', img);
+			$("#pageModal").find('.modal_body_text').html(""+quote)
+			$(".modal_body_team_social").removeClass('hide');
+
+		}
+		function isScrolledIntoView(elem){
+		    var docViewTop = $(window).scrollTop();
+		    var docViewBottom = docViewTop + $(window).height();
+
+		    var elemTop = elem.offset().top;
+		    var elemBottom = elemTop + elem.height();
+
+		    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+		}
+
+		var interValID;
+		var counterStarted = false;
+		var coffee = 1, lines = 1, happy = 1, awards = 1;
+		var maxCoffee = 1000, maxLines = 346868, maxHappy = 150, maxAwards = 27;
+		function increaseCount () {
+			// console.log("[increaseCount] increasing...");
+			coffee +=1, lines +=2231, happy +=5, awards +=1;
+			if(coffee < maxCoffee) $('#progress_counter_coffee').text(""+coffee);
+			if(happy < maxHappy) $('#progress_counter_happy').text(""+happy);
+			if(awards < maxAwards) $('#progress_counter_awards').text(""+awards);
+			if(lines < maxLines) $('#progress_counter_lines').text(""+lines);
+			else{
+				stopInterval(interValID)
+			}
+		}
+
+		function getRandomInteger(min, max) {
+    		return min + Math.floor(Math.random() * (max - min) );
+		}
+
+		function stopInterval(id){
+			clearInterval(id);
+		}
+
 		$(window).load(function () {
 			$('.service_row a').each(function () {
 				$(this).click(function(event) {
 					event.preventDefault();
 					console.log("READ MORE");
 				});
-			})
+			});
 		});
+
+		$(window).scroll(function(event) {
+			$('.progress-bar').each(function () {
+				var inView = false;
+				//For each progress bar, check if is visible
+				if(isScrolledIntoView($(this)) && $(this).css("width") == "10px"){
+					var val = getRandomInteger(90, 99);	
+					var elemWidth = ""+val+"%";				
+					$(this).css({
+						width: elemWidth});
+					$(this).find('span').html(""+val);
+					inView = true;
+					console.log("Progress Bar Visible!");
+				};
+			});
+
+		
+			if(isScrolledIntoView($('#row_progress_container')) && counterStarted == false){
+				console.log("Counter Container Visible")
+				counterStarted = true;
+				interValID = setInterval(function () {
+					increaseCount();
+				}, 10);
+			}
+		});
+
 	</script>
 </head>
 <body>
@@ -57,7 +133,7 @@
 			<div id="wowslider-container1">
 				<div class="ws_images"><ul>
 						<li><img src="slider/data1/images/slider1.jpg" alt="slider1" title="slider1" id="wows1_0"/></li>
-						<li><img src="slider/data1/images/slider2.jpg" alt="carousel bootstrap" title="slider2" id="wows1_1"/></a></li>
+						<li><img src="slider/data1/images/slider2.jpg" alt="carousel bootstrap" title="We challenge the status quo!" id="wows1_1"/></a></li>
 						<li><img src="slider/data1/images/slider3.jpg" alt="slider3" title="slider3" id="wows1_2"/></li>
 					</ul>
 				</div>
@@ -90,7 +166,8 @@
 					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<button id="row_about_us_content_btn" class="btn_default">OUR SERVICES</button>
+					<button id="row_about_us_content_btn" class="btn_default"> OUR SERVICES</button>
+					<!-- <a href="#works" class="btn_default">OUR SERVICES</a> -->
 				</div>
 			</div>
 
@@ -99,21 +176,21 @@
 					<p>WEB DESIGN</p>
 					<div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuenow="95"
-					  aria-valuemin="0" aria-valuemax="100" style="width:95%">
+					  aria-valuemin="0" aria-valuemax="100" style="width:10px">
 					    <span>95%</span>
 					  </div>
 					</div>
 					<p>GRAPHIC DESIGN</p>
 					<div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuenow="90"
-					  aria-valuemin="0" aria-valuemax="100" style="width:90%">
+					  aria-valuemin="0" aria-valuemax="100" style="width:10px">
 					    <span>90%</span>
 					  </div>
 					</div> 
 					<p>WORDPRESS</p>
 					<div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuenow="85"
-					  aria-valuemin="0" aria-valuemax="100" style="width:85%">
+					  aria-valuemin="0" aria-valuemax="100" style="width:10px">
 					    <span>85%</span>
 					  </div>
 					</div>  
@@ -122,21 +199,21 @@
 					<p>WEB DEVELOPMENT</p>
 					<div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuenow="95"
-					  aria-valuemin="0" aria-valuemax="100" style="width:95%">
+					  aria-valuemin="0" aria-valuemax="100" style="width:10px">
 					    <span>90%</span>
 					  </div>
 					</div>
 					<p>SEO</p>
 					<div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuenow="95"
-					  aria-valuemin="0" aria-valuemax="100" style="width:95%">
+					  aria-valuemin="0" aria-valuemax="100" style="width:10px">
 					    <span>95%</span>
 					  </div>
 					</div> 
 					<p>JQUERY</p>
 					<div class="progress">
 					  <div class="progress-bar" role="progressbar" aria-valuenow="95"
-					  aria-valuemin="0" aria-valuemax="100" style="width:95%">
+					  aria-valuemin="0" aria-valuemax="100" style="width:10px">
 					    <span>95%</span>
 					  </div>
 					</div> 
@@ -153,7 +230,7 @@
 							<div class="col-sm-10">
 								<h4>Web Development</h4>
 								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
 							</div>
 						</div>
 						<div class="row">
@@ -163,7 +240,7 @@
 							<div class="col-sm-10">
 								<h4>Graphic Design</h4>
 								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
 							</div>
 						</div>
 					</div>
@@ -175,7 +252,7 @@
 							<div class="col-sm-10">
 								<h4>Wordpress</h4>
 								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
 							</div>
 						</div>
 						<div class="row">
@@ -185,7 +262,7 @@
 							<div class="col-sm-10">
 								<h4>Web Design</h4>
 								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
 							</div>
 						</div>
 					</div>
@@ -197,7 +274,7 @@
 							<div class="col-sm-10">
 								<h4>Branding</h4>
 								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
 							</div>
 						</div>
 						<div class="row">
@@ -207,7 +284,7 @@
 							<div class="col-sm-10">
 								<h4>SEO</h4>
 								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#modal_our_service">READ MORE</a>
+								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
 							</div>
 						</div>
 					</div>
@@ -216,7 +293,7 @@
 
 			<!-- Row "Our Work" -->
 			<div class="row" id="row_our_work">
-				<h3>OUR WORKS</h3>
+				<h3><a name="works">OUR WORKS</a></h3>
 				<ul id="row_our_work_list">
 					<li><a href="#" class="active">ALL</a></li>
 					<li>/</li>
@@ -234,28 +311,34 @@
 				<div class="col-sm-4">
 					<div class="row">
 						<div class="col-sm-12 row_our_work_content" >
-							<img src="./img/wordpress.jpg" >
-							<p class="row_our_work_content_label">Wordpress</p>
+							<div>
+								<img src="./img/wordpress.jpg" >
+								<p class="row_our_work_content_label">Wordpress</p>
+							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12 row_our_work_content">
-							<img src="./img/branding2.jpg">
-							<p class="row_our_work_content_label">Branding</p>
+							<div>
+								<img src="./img/branding2.jpg">
+								<p class="row_our_work_content_label">Branding</p>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-4">
 					<div class="row">
 						<div class="col-sm-12 row_our_work_content">
-							<img src="./img/graphic-design.jpg">
-							<p class="row_our_work_content_label">Graphic Design</p>
+							<div>
+								<img src="./img/graphic-design.jpg">
+								<p class="row_our_work_content_label">Graphic Design</p>
+							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12 row_our_work_content">
 							<img src="./img/seo1.jpg">
-							<p class="row_our_work_content_label" style="left:40%;padding-left:20px;padding-right:20px;">SEO</p>
+							<p class="row_our_work_content_label">SEO</p>
 						</div>
 					</div>
 				</div>
@@ -269,7 +352,7 @@
 					<div class="row">
 						<div class="col-sm-12 row_our_work_content">
 							<img src="./img/web-design2.png">
-							<p class="row_our_work_content_label" style="left:18%;">Web Development</p>
+							<p class="row_our_work_content_label">Web Development</p>
 						</div>
 					</div>		
 				</div>
@@ -281,22 +364,22 @@
 				<div class="row" id="row_progress">
 					<div class="col-sm-3 row_progress_content">
 						<i><span class="fa fa-smile-o"></span></i>
-						<h4>999</h4>
-						<p>HAPPY CLIENTS</p>
+						<h4 class="progress_counter"><span id="progress_counter_happy">0</span></h4>
+						<p>SATISFIED CLIENTS</p>
 					</div>
 					<div class="col-sm-3 row_progress_content">
 						<i><span class="fa fa-code"></span></i>
-						<h4>999</h4>
+						<h4 class="progress_counter"><span id="progress_counter_lines">0</span></h4>
 						<p>LINES OF CODE</p>
 					</div>
 					<div class="col-sm-3 row_progress_content">
 						<i><span class="fa fa-trophy"></span></i>
-						<h4>999</h4>
+						<h4 class="progress_counter"><span id="progress_counter_awards">0</span></h4>
 						<p>AWARDS WON</p>
 					</div>
 					<div class="col-sm-3 row_progress_content">
 						<i><span class="fa fa-coffee"></span></i>
-						<h4>999</h4>
+						<h4 class="progress_counter"><span id="progress_counter_coffee">0</span></h4>
 						<p>CUPS OF COFFEE</p>
 					</div>
 				</div>
@@ -305,43 +388,46 @@
 			<!-- The Team -->
 			<div class="row" id="row_team">
 				<div class="col-sm-4 row_team_content">
-					<div class="row_team_content_img_container">
+					<div class="row_team_content_img_container" onclick="teamModal($(this))">
 						<ul class="row_team_content_social">
-							<li><a href="#"><i><span class="fa fa-instagram"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-facebook"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-twitter"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-google-plus"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-instagram"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-facebook"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-twitter"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-google-plus"></span></i></a></li>
 						</ul>
-						<img src="./img/team1.jpg">
+						<img src="img/team4.jpg">
 					</div>
 					<h4 class="row_team_content_name">JOHN DOE</h4>
-					<p>Creative Director</p>
+					<p class="row_team_content_role">Creative Director</p>
+					<p class="row_team_content_quote">John is the creative lead and is wholly oversees the creative process here at Jyonik. </p>
 				</div>
 				<div class="col-sm-4 row_team_content">
-					<div class="row_team_content_img_container">
+					<div class="row_team_content_img_container" onclick="teamModal($(this))">
 						<ul class="row_team_content_social">
-							<li><a href="#"><i><span class="fa fa-instagram"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-facebook"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-twitter"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-google-plus"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-instagram"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-facebook"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-twitter"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-google-plus"></span></i></a></li>
 						</ul>
-						<img src="./img/team2.jpg">
+						<img src="img/team2.jpg">
 					</div>
 					<h4 class="row_team_content_name">JANE DOE</h4>
-					<p>Head of Sales</p>
+					<p class="row_team_content_role">Head of Sales</p>
+					<p class="row_team_content_quote">"It's all about the sales", she says. Jane oversees all sales activities and manages all sales teams.</p>
 				</div>
 				<div class="col-sm-4 row_team_content">
-					<div class="row_team_content_img_container">
+					<div class="row_team_content_img_container" onclick="teamModal($(this))">
 						<ul class="row_team_content_social">
-							<li><a href="#"><i><span class="fa fa-instagram"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-facebook"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-twitter"></span></i></a></li>
-							<li><a href="#"><i><span class="fa fa-google-plus"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-instagram"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-facebook"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-twitter"></span></i></a></li>
+							<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-google-plus"></span></i></a></li>
 						</ul>
-						<img src="./img/team3.jpg">
+						<img src="img/team3.jpg">
 					</div>
 					<h4 class="row_team_content_name">PETER DOE</h4>
-					<p>Regional Director</p>
+					<p class="row_team_content_role">Regional Director</p>
+					<p class="row_team_content_quote">Peter is the East Africa regional head and oversees all operations in this region. </p>
 				</div>
 			</div><!-- End Team row -->
 
@@ -369,26 +455,93 @@
 				</div>
 			</div>
 
+			<!-- Row Contact Us -->
 			<div class="row" id="row_contact_us">
 				<h3>CONTACT US</h3>
 				<hr style="border:2px solid #cb3526; width:5%; margin: 0 auto;">
+				<form>
+					<div class="col-sm-12">
+						<div class="row row_contact_us_form">
+							<div class="col-sm-4">
+								<label for="contact_name">NAME</label>
+								<input class="row_contact_us_form_input" type="text" name="contact_name" id="contact_name" placeholder="Enter your name here">
+							</div>
+							<div class="col-sm-4">
+								<label for="contact_number">PHONE NUMBER</label>
+								<input class="row_contact_us_form_input" type="text" name="contact_number" id="contact_number" placeholder="Enter your phone number">
+							</div>
+							<div class="col-sm-4">
+								<label for="contact_email">EMAIL</label>
+								<input class="row_contact_us_form_input" type="email" name="contact_email" id="contact_email" placeholder="Enter your email">
+							</div>
+						</div>
+						<div class="row row_contact_us_form">
+							<div class="col-sm-12">
+								<label for="contact_name">Your Message</label>
+								<textarea class="row_contact_us_form_input" placeholder="Enter your message here" style="resize: none;" rows="4"></textarea>
+							</div>
+						</div>
+						<input type="submit" value="SUBMIT" class="btn_default">
+					</div>
+				</form>
 			</div>
 
-			<!-- Modal for services 'READ MORE' -->
+			<!-- Map -->
+			<div class="row" id="row_map">
+			</div>
+			<script type="text/javascript">
+				function initMap () {
+					//Set coordinates
+					var legibra = {
+						lat: -1.2884708,
+						lng: 36.7986503
+					}
+					//Create map
+					var map = new google.maps.Map(document.getElementById("row_map"), { zoom:14, center: legibra});
+					//Set marker
+					var marker = new google.maps.Marker({
+						position: legibra,
+						map: map
+					});
+				}
+			</script>
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeOrt1DbHF_4A-cwZtSKrx499KVjDDVwQ&callback=initMap"></script>
+			<!-- End Map -->
+
+			<!-- Footer -->
+			<div class="row" id="row_footer">
+				<img src="./img/logo.png">
+				<ul id="row_footer_social">
+					<li><i><span class="fa fa-facebook-square"></span></i></li>
+					<li><i><span class="fa fa-linkedin-square"></span></i></li>
+					<li><i><span class="fa fa-twitter-square"></span></i></li>
+					<li><i><span class="fa fa-instagram"></span></i></li>
+				</ul>
+				<p>COPYRIGHT 2017, ALL RIGHTS RESERVED </p>
+			</div>
+
+
 			<!-- Modal -->
-			<div id="modal_our_service" class="modal fade" role="dialog">
+			<div id="pageModal" class="modal fade" role="dialog">
 			  <div class="modal-dialog">
 			    <!-- Modal content-->
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <button type="button" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</button>
 			        <h3 class="modal-title">Modal Header</h3>
 			      </div>
 			      <div class="modal-body">
-			        <p>Some text in the modal.</p>
+			        <img src="img/placeholder2.png" id="modal_body_img">
+			        <blockquote class="modal_body_text"></blockquote>
+			        <ul class="modal_body_team_social hide" >
+						<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-instagram"></span></i></a></li>
+						<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-facebook"></span></i></a></li>
+						<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-twitter"></span></i></a></li>
+						<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-google-plus"></span></i></a></li>
+					</ul>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn_default" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>
 			  </div>
