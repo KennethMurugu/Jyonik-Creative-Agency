@@ -3,6 +3,7 @@
 <head>
 	<title>Jyonik Creative Agency | Home</title>
 	<meta charset="utf-8">
+	<link rel="icon" href="img/jyonik-logo-small.png">
 	<!-- Vendor CSS -->
 	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./vendor/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -19,91 +20,7 @@
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<!-- Page Scripts -->
-	<script type="text/javascript">
-
-		function teamModal(elem){
-			$('#pageModal').modal();
-			var name = elem.parent().find('.row_team_content_name').html();
-			var role = elem.parent().find('.row_team_content_role').html();
-			var img = elem.parent().find('.row_team_content_img_container img').attr("src");
-			var quote = elem.parent().find('.row_team_content_quote').html();
-			console.log("MEMBER NAME: "+ name+"\n IMAGE: "+img);
-
-			$("#pageModal").find('.modal-title').html(""+name+", "+role);
-			$("#pageModal").find('#modal_body_img').attr('src', img);
-			$("#pageModal").find('.modal_body_text').html(""+quote)
-			$(".modal_body_team_social").removeClass('hide');
-
-		}
-		function isScrolledIntoView(elem){
-		    var docViewTop = $(window).scrollTop();
-		    var docViewBottom = docViewTop + $(window).height();
-
-		    var elemTop = elem.offset().top;
-		    var elemBottom = elemTop + elem.height();
-
-		    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-		}
-
-		var interValID;
-		var counterStarted = false;
-		var coffee = 1, lines = 1, happy = 1, awards = 1;
-		var maxCoffee = 1000, maxLines = 346868, maxHappy = 150, maxAwards = 27;
-		function increaseCount () {
-			// console.log("[increaseCount] increasing...");
-			coffee +=1, lines +=2231, happy +=5, awards +=1;
-			if(coffee < maxCoffee) $('#progress_counter_coffee').text(""+coffee);
-			if(happy < maxHappy) $('#progress_counter_happy').text(""+happy);
-			if(awards < maxAwards) $('#progress_counter_awards').text(""+awards);
-			if(lines < maxLines) $('#progress_counter_lines').text(""+lines);
-			else{
-				stopInterval(interValID)
-			}
-		}
-
-		function getRandomInteger(min, max) {
-    		return min + Math.floor(Math.random() * (max - min) );
-		}
-
-		function stopInterval(id){
-			clearInterval(id);
-		}
-
-		$(window).load(function () {
-			$('.service_row a').each(function () {
-				$(this).click(function(event) {
-					event.preventDefault();
-					console.log("READ MORE");
-				});
-			});
-		});
-
-		$(window).scroll(function(event) {
-			$('.progress-bar').each(function () {
-				var inView = false;
-				//For each progress bar, check if is visible
-				if(isScrolledIntoView($(this)) && $(this).css("width") == "10px"){
-					var val = getRandomInteger(90, 99);	
-					var elemWidth = ""+val+"%";				
-					$(this).css({
-						width: elemWidth});
-					$(this).find('span').html(""+val);
-					inView = true;
-					console.log("Progress Bar Visible!");
-				};
-			});
-
-		
-			if(isScrolledIntoView($('#row_progress_container')) && counterStarted == false){
-				console.log("Counter Container Visible")
-				counterStarted = true;
-				interValID = setInterval(function () {
-					increaseCount();
-				}, 10);
-			}
-		});
-
-	</script>
+	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
 	<div id="main_wrapper"> <!-- Wrapper for all page content -->
@@ -159,13 +76,8 @@
 
 				<div class="col-sm-7" id="row_about_us_content">
 					<h3>ABOUT US</h3>
-					<hr style="border:2px solid #cb3526; width:15%;">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<hr style="border:2px solid #cb3526; width:10%;">
+					<p>Jyonik is a creative studio dedicated to design, development, branding, printing and outsourcing of infrastructure. We are headquartered in Nairobi – Kenya since 2009 where we have been creating intuitive solutions for businesses across the globe and from a diverse range of sectors.</p>
 					<button id="row_about_us_content_btn" class="btn_default"> OUR SERVICES</button>
 					<!-- <a href="#works" class="btn_default">OUR SERVICES</a> -->
 				</div>
@@ -227,20 +139,20 @@
 							<div class="col-sm-2">
 								<p><i><span class="fa fa-server"></span></i></p>
 							</div>
-							<div class="col-sm-10">
-								<h4>Web Development</h4>
-								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
+							<div class="col-sm-10 row_our_services_card">
+								<h4 class="row_our_services_card_title">Web Development</h4>
+								<p class="row_our_services_card_text">From one-pagers to complex web applications, we've got you covered.</p>
+								<a href="#" onclick="readMoreModal($(this))">READ MORE</a>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-2">
 								<p><i><span class="fa fa-magic"></span></i></p>
 							</div>
-							<div class="col-sm-10">
-								<h4>Graphic Design</h4>
-								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
+							<div class="col-sm-10 row_our_services_card">
+								<h4 class="row_our_services_card_title">Graphic Design</h4>
+								<p class="row_our_services_card_text">We create exquisite visual compositions that communicate what you're all about and entice your visitors.</p>
+								<a href="#" onclick="readMoreModal($(this))">READ MORE</a>
 							</div>
 						</div>
 					</div>
@@ -249,20 +161,20 @@
 							<div class="col-sm-2">
 								<p><i><span class="fa fa-code"></span></i></p>
 							</div>
-							<div class="col-sm-10">
-								<h4>Wordpress</h4>
-								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
+							<div class="col-sm-10 row_our_services_card">
+								<h4 class="row_our_services_card_title">Wordpress</h4>
+								<p class="row_our_services_card_text">We use our knowledge of Wordpress themes and customizability to create the kind of site you want, how you want it.</p>
+								<a href="#" onclick="readMoreModal($(this))">READ MORE</a>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-2">
 								<p><i><span class="fa fa-pencil-square-o"></span></i></p>
 							</div>
-							<div class="col-sm-10">
-								<h4>Web Design</h4>
-								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
+							<div class="col-sm-10 row_our_services_card">
+								<h4 class="row_our_services_card_title">Web Design</h4>
+								<p class="row_our_services_card_text">We give your site a look that matches your personality, be it a small business owner or a multinational corporation and everything in between.</p>
+								<a href="#" onclick="readMoreModal($(this))">READ MORE</a>
 							</div>
 						</div>
 					</div>
@@ -271,20 +183,20 @@
 							<div class="col-sm-2">
 								<p><i><span class="fa fa-gift"></span></i></p>
 							</div>
-							<div class="col-sm-10">
-								<h4>Branding</h4>
-								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
+							<div class="col-sm-10 row_our_services_card">
+								<h4 class="row_our_services_card_title">Branding</h4>
+								<p class="row_our_services_card_text">We're all about giving you a unique look to help establish and solidify your place in the market.</p>
+								<a href="#" onclick="readMoreModal($(this))">READ MORE</a>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-2">
 								<p><i><span class="fa fa-search"></span></i></p>
 							</div>
-							<div class="col-sm-10">
-								<h4>SEO</h4>
-								<p>Some text text text text text text </p>
-								<a href="#" data-toggle="modal" data-target="#pageModal">READ MORE</a>
+							<div class="col-sm-10 row_our_services_card">
+								<h4 class="row_our_services_card_title">SEO</h4>
+								<p class="row_our_services_card_text">We use our technical and creative expertise to improve web ranking, drive traffic and increase search engine awareness.</p>
+								<a href="#" onclick="readMoreModal($(this))">READ MORE</a>
 							</div>
 						</div>
 					</div>
@@ -293,68 +205,91 @@
 
 			<!-- Row "Our Work" -->
 			<div class="row" id="row_our_work">
-				<h3><a name="works">OUR WORKS</a></h3>
+				<h3>OUR WORKS</h3><a name="#works"></a>
+				<!-- <hr style="border:2px solid #cb3526; width:5%;"> -->
 				<ul id="row_our_work_list">
-					<li><a href="#" class="active">ALL</a></li>
+					<li><a href="#" class="active" id="row_our_work_link_all" onclick="ourWorkContentSliderHide(event)">ALL</a></li>
 					<li>/</li>
-					<li><a href="#">WEB DEVELOPMENT</a></li>
+					<li><a href="#" id="row_our_work_link_web_dev" onclick="ourWorkContentSliderLinkShow(event, $(this))">WEB DEVELOPMENT</a></li>
 					<li>/</li>
-					<li><a href="#">WEB DESIGN</a></li>
+					<li><a href="#" id="row_our_work_link_web_design" onclick="ourWorkContentSliderLinkShow(event, $(this))">WEB DESIGN</a></li>
 					<li>/</li>
-					<li><a href="#">WORDPRESS</a></li>
+					<li><a href="#" id="row_our_work_link_wordpress" onclick="ourWorkContentSliderLinkShow(event, $(this))">WORDPRESS</a></li>
 					<li>/</li>
-					<li><a href="#">SEO</a></li>
+					<li><a href="#" id="row_our_work_link_seo" onclick="ourWorkContentSliderLinkShow(event, $(this))">SEO</a></li>
 					<li>/</li>
-					<li><a href="#">GRAPHIC DESIGN</a></li>
+					<li><a href="#" id="row_our_work_link_graphic" onclick="ourWorkContentSliderLinkShow(event, $(this))">GRAPHIC DESIGN</a></li>
 				</ul>
-
-				<div class="col-sm-4">
-					<div class="row">
-						<div class="col-sm-12 row_our_work_content" >
-							<div>
-								<img src="./img/wordpress.jpg" >
-								<p class="row_our_work_content_label">Wordpress</p>
+				<div>
+					<div id="row_our_work_content_slider" style="display: none;">
+						<!-- <img class="row_our_work_content_slider_img slider_left" id="row_our_work_content_slider_img_left" src="img/placeholder.jpg" style="z-index: 1" >
+						<img class="row_our_work_content_slider_img slider_center" id="row_our_work_content_slider_img_center" src="img/placeholder2.png" style="z-index: 2">
+						<img class="row_our_work_content_slider_img slider_right" id="row_our_work_content_slider_img_right" src="img/team1.jpg" style="z-index: 3" > -->
+						<img src="img/placeholder.jpg" class="row_our_work_content_slider_img" id="row_our_work_content_slider_img_fg">
+						<img src="img/placeholder2.png" class="row_our_work_content_slider_img" id="row_our_work_content_slider_img_bg">
+						<span><i class="fa fa-arrow-circle-left" id="slide_arrow_left" onclick="prevImage()"></i></span>
+						<span><i class="fa fa-arrow-circle-right" id="slide_arrow_right" onclick="nextImage()"></i></span>	
+					</div>
+					<div id="row_our_work_content_container">
+						<div class="col-sm-4">
+							<div class="row">
+								<div class="col-sm-12 row_our_work_content" >
+									<div>
+										<img src="./img/wordpress.jpg" class="row_our_work_content_wordpress">
+										<p class="row_our_work_content_label">Wordpress</p>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="row">
+								<div class="col-sm-12 row_our_work_content">
+									<div>
+										<img src="./img/branding2.jpg" class="row_our_work_content_branding">
+										<p class="row_our_work_content_label">Branding</p>
+									</div>
+								</div>
+							</div> -->
+						</div>
+						<div class="col-sm-4">
+							<div class="row">
+								<div class="col-sm-12 row_our_work_content">
+									<div>
+										<img src="./img/graphic-design.jpg" class="row_our_work_content_graphic">
+										<p class="row_our_work_content_label">Graphic Design</p>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="row">
+								<div class="col-sm-12 row_our_work_content">
+									<img src="./img/seo1.jpg" class="row_our_work_content_seo">
+									<p class="row_our_work_content_label">SEO</p>
+								</div>
+							</div> -->
+						</div>
+						<div class="col-sm-4">
+							<div class="row">
+								<div class="col-sm-12 row_our_work_content">
+									<img src="./img/web-design1.jpg" class="row_our_work_content_web_design">
+									<p class="row_our_work_content_label">Web Design</p>
+								</div>
+							</div>
+							<!-- <div class="row">
+								<div class="col-sm-12 row_our_work_content">
+									<img src="./img/web-design2.png" class="row_our_work_content_web_dev">
+									<p class="row_our_work_content_label">Web Development</p>
+								</div>
+							</div>	 -->	
+						</div>
+						<div class="row">
+							<div class="col-sm-6 row_our_work_content">
+								<img src="./img/web-design2.png" class="row_our_work_content_web_dev">
+								<p class="row_our_work_content_label">Web Development</p>
+							</div>
+							<div class="col-sm-6 row_our_work_content">
+								<img src="./img/seo1.jpg" class="row_our_work_content_seo">
+								<p class="row_our_work_content_label">SEO</p>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12 row_our_work_content">
-							<div>
-								<img src="./img/branding2.jpg">
-								<p class="row_our_work_content_label">Branding</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="row">
-						<div class="col-sm-12 row_our_work_content">
-							<div>
-								<img src="./img/graphic-design.jpg">
-								<p class="row_our_work_content_label">Graphic Design</p>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12 row_our_work_content">
-							<img src="./img/seo1.jpg">
-							<p class="row_our_work_content_label">SEO</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="row">
-						<div class="col-sm-12 row_our_work_content">
-							<img src="./img/web-design1.jpg">
-							<p class="row_our_work_content_label">Web Design</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12 row_our_work_content">
-							<img src="./img/web-design2.png">
-							<p class="row_our_work_content_label">Web Development</p>
-						</div>
-					</div>		
 				</div>
 				<button class="btn_default">LOAD MORE</button>
 			</div><!-- End row "Our Work" -->
@@ -435,22 +370,15 @@
 				<div class="col-sm-6">
 					<h3>WHY US</h3>
 					<hr style="border:2px solid #cb3526; width:15%;">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi.</p>
+					<p>Our passion for tech drives us to produce the best possible product for you as quickly and effeciently as possible.</p>
 					<ul id="row_why_us_list">
-						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt</p></li>
-						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt</p></li>
-						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt</p></li>
-						<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt</p></li>
+						<li><p>Experience - we have <b>20 years</b> of experience in web design. We have seen the Web evolve through the years and know the latest design trends in Web Development.</p></li>
+						<li><p>Knowledge - our years of experience give us a leg up over our competitors as we have all the technical expertise needed to get the job done how you want it, when you want it.</p></li>
+						<li><p>Cost friendly - our pricing is competitive all while giving you bang for your buck.</p></li>
+						<li><p>Free Support - for upto 3 months we offer free support and make any changes you see fit at no extra cost.</p></li>
 					</ul>
 				</div>
 				<div class="col-sm-6">
-					<h3>WHY US</h3>
 					<iframe width="560" height="315" src="https://www.youtube.com/embed/viv-49DL8jY" frameborder="0" allowfullscreen id="row_why_us_video_embed"></iframe>
 				</div>
 			</div>
@@ -459,26 +387,26 @@
 			<div class="row" id="row_contact_us">
 				<h3>CONTACT US</h3>
 				<hr style="border:2px solid #cb3526; width:5%; margin: 0 auto;">
-				<form>
+				<form action="backend/contact_submit.php" method="POST" target="contact_iframe">
 					<div class="col-sm-12">
 						<div class="row row_contact_us_form">
 							<div class="col-sm-4">
 								<label for="contact_name">NAME</label>
-								<input class="row_contact_us_form_input" type="text" name="contact_name" id="contact_name" placeholder="Enter your name here">
+								<input class="row_contact_us_form_input" type="text" name="contact_name" id="contact_name" placeholder="Enter your name here" required>
 							</div>
 							<div class="col-sm-4">
 								<label for="contact_number">PHONE NUMBER</label>
-								<input class="row_contact_us_form_input" type="text" name="contact_number" id="contact_number" placeholder="Enter your phone number">
+								<input class="row_contact_us_form_input" type="text" name="contact_number" id="contact_number" placeholder="Enter your phone number" required>
 							</div>
 							<div class="col-sm-4">
 								<label for="contact_email">EMAIL</label>
-								<input class="row_contact_us_form_input" type="email" name="contact_email" id="contact_email" placeholder="Enter your email">
+								<input class="row_contact_us_form_input" type="email" name="contact_email" id="contact_email" placeholder="Enter your email" required>
 							</div>
 						</div>
 						<div class="row row_contact_us_form">
 							<div class="col-sm-12">
-								<label for="contact_name">Your Message</label>
-								<textarea class="row_contact_us_form_input" placeholder="Enter your message here" style="resize: none;" rows="4"></textarea>
+								<label for="contact_name">YOUR MESSAGE</label>
+								<textarea class="row_contact_us_form_input" placeholder="Enter your message here" style="resize: none;" rows="4" name="contact_msg" required></textarea>
 							</div>
 						</div>
 						<input type="submit" value="SUBMIT" class="btn_default">
@@ -512,27 +440,28 @@
 			<div class="row" id="row_footer">
 				<img src="./img/logo.png">
 				<ul id="row_footer_social">
-					<li><i><span class="fa fa-facebook-square"></span></i></li>
-					<li><i><span class="fa fa-linkedin-square"></span></i></li>
-					<li><i><span class="fa fa-twitter-square"></span></i></li>
-					<li><i><span class="fa fa-instagram"></span></i></li>
+					<li><a href="https://www.legibra.com"><i><span class="fa fa-facebook-square"></span></i></a></li>
+					<li><a href="https://www.legibra.com"><i><span class="fa fa-linkedin-square"></span></i></a></li>
+					<li><a href="https://www.legibra.com"><i><span class="fa fa-twitter-square"></span></i></a></li>
+					<li><a href="https://www.legibra.com"><i><span class="fa fa-instagram"></span></i></a></li>
 				</ul>
 				<p>COPYRIGHT 2017, ALL RIGHTS RESERVED </p>
-			</div>
+			</div><!-- End Footer -->
 
 
 			<!-- Modal -->
 			<div id="pageModal" class="modal fade" role="dialog">
 			  <div class="modal-dialog">
 			    <!-- Modal content-->
-			    <div class="modal-content">
+			    <div class="modal-content" style="margin-top: 80px;">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" style="cursor: pointer;">&times;</button>
 			        <h3 class="modal-title">Modal Header</h3>
 			      </div>
 			      <div class="modal-body">
 			        <img src="img/placeholder2.png" id="modal_body_img">
-			        <blockquote class="modal_body_text"></blockquote>
+			        <blockquote class="modal_body_team_text"></blockquote>
+			        <p id="modal_body_readmore_text"></p>
 			        <ul class="modal_body_team_social hide" >
 						<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-instagram"></span></i></a></li>
 						<li><a href="https://www.legibra.com" target="new"><i><span class="fa fa-facebook"></span></i></a></li>
@@ -541,13 +470,16 @@
 					</ul>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn_default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn_default" data-dismiss="modal">CLOSE</button>
 			      </div>
 			    </div>
 			  </div>
 			</div>
 			<!-- End Modal -->
 		</div><!-- End Main Content -->
+
+		<!-- Dummy iframe to prevent page reload -->
+		<iframe name="contact_iframe" style="display: none;"></iframe>
 	</div><!-- End Main Content Wrapper -->
 </body>
 </html>
