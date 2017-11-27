@@ -4,6 +4,7 @@ function teamModal(teamMember){
 	$(".modal_body_team_social").removeClass('hide');
 	$("#modal_body_img").removeClass('hide');
 	$(".modal_body_team_text").removeClass('hide');
+	$("#modal_body_readmore_text").html("");
 	//Show modal
 	$('#pageModal').modal();
 	//Get team member info
@@ -31,10 +32,11 @@ function readMoreModal (card) {
 	$("#pageModal").modal();
 	//Get card info
 	var title = card.parent().find('.row_our_services_card_title').html();
+	var text = card.parent().find('.row_our_services_card_text').html();
 
 	//Set card info on modal elements
 	$("#pageModal").find('.modal-title').html(""+title);
-	$("#pageModal").find('#modal_body_readmore_text').html("lorem");
+	$("#pageModal").find('#modal_body_readmore_text').html(text);
 }
 //Checking if element is visible on screen after scrolling
 function isScrolledIntoView(elem){
@@ -44,7 +46,7 @@ function isScrolledIntoView(elem){
     var elemTop = elem.offset().top;
     var elemBottom = elemTop + elem.height();
 
-    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    return  (elemTop >= docViewTop);
 }
 
 var interValID;
@@ -145,6 +147,33 @@ function getRandomInteger(min, max) {
 //
 function stopInterval(id){
 	clearInterval(id);
+}
+
+function emailPopup () {
+	$("#email_popup").fadeIn("fast");
+	setTimeout(function () {
+		$("#email_popup").fadeOut("fast");
+	}, 2000);
+}
+
+function pagePopup (event) {
+	var contactForm = $(".contact_us_form");
+	contactForm.validate();
+	// alert(contactForm.valid());
+	if(contactForm.valid()){
+		$("#page_popup").css({
+			"bottom": "0px"
+		});
+		setTimeout(function () {
+			$("#page_popup").css({
+				"bottom": "-60px"
+			});
+		}, 4000);
+	}
+}
+
+function fadeNavToggle () {
+	$("#page_nav").fadeToggle("fast");
 }
 
 $(window).load(function () {

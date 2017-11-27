@@ -62,6 +62,18 @@ body, #main_wrapper
 	/*background-color: #484848;*/
 }
 /* Nav */
+#btn_nav
+{
+	color: #fff;
+	float: right;
+	cursor: pointer;
+	transition: all .2s ease;
+	display: none;
+}
+#btn_nav:hover
+{
+	text-shadow: 0px 0px 5px #fff;
+}
 #page_logo
 {
 	width: 20%;
@@ -78,12 +90,17 @@ body, #main_wrapper
 	box-shadow: 0px 1px 5px #060606;
 	z-index: 9999;
 	transition: all .2s ease;
+	text-align: center;
 }
 #page_nav
 {
 	list-style: none;
 	background-color: transparent;
 	/*padding: 20px;*/
+}
+#page_nav ul li.page_nav_btwn
+{
+	display:block;
 }
 #page_nav ul
 {
@@ -263,7 +280,7 @@ body, #main_wrapper
 
 #slide_arrow_left, #slide_arrow_right
 {
-	color: #cbc8c880;
+	color: #b1332f;
 	position: absolute;
 	font-size: 45px;
 	top: 40%;
@@ -411,6 +428,7 @@ body, #main_wrapper
 	max-width: 300px;
 	overflow: hidden;
 	transition: all 1s linear;
+	margin: 0 auto;
 }
 
 .row_team_content_img_container:hover img
@@ -592,4 +610,99 @@ body, #main_wrapper
 .modal-footer
 {
 	text-align: center;
+}
+
+/*Popup*/
+#page_popup, #email_popup
+{
+	width: 20%;
+	background-color: #0a9e26;
+	color: #fff;
+	font-size: 18px;
+	font-family: "Roboto Condensed";
+	box-shadow: 0px 1px 5px #000;
+	padding: 5px;
+	text-align: center;
+	display: block;
+	bottom: 0;
+	z-index: 99999;
+	margin: 10px auto;
+	/*transition: all 1.5s ease;*/
+	display: block;
+}
+#page_popup
+{
+	position: fixed;
+	width: 100%;
+	margin: 0 auto;
+	bottom: -60px;
+	transition: all .5s ease;
+}
+
+
+/*Responsive stylings*/
+@media screen and (max-width: 1000px)
+{
+	#page_nav ul
+	{
+		margin-right: 0;
+	}
+	#page_logo
+	{
+		margin-left: 0;
+	}
+	.row
+	{
+		width: 95%;
+	}
+	#row_our_services
+	{
+		width: 90%;
+	}
+}
+@media screen and (max-width: 768px)
+{
+	#btn_nav
+	{
+		display: block;
+	}
+	#page_logo
+	{
+		/*width: 100%;*/
+		/*margin-bottom: 30px;*/
+		float: left;
+	}
+	#page_nav
+	{
+		background-color: #484848;
+		margin: 0 auto;
+		position: absolute;
+		right: 0;
+		width: 40%;
+		box-shadow: 0px 5px 5px rgba(0,0,0, .5);
+		display: none;
+		top: 100%;
+	}
+	#page_nav ul
+	{
+		width: 100%;
+	}
+	#page_nav ul li
+	{
+		display: block;
+		padding: 10px;
+	}
+	#page_nav ul li:hover
+	{
+		background-color: #fff;
+		color: #000;
+	}
+	.row
+	{
+		width: 100%;
+	}
+	.modal_body_team_social
+	{
+		width: 100%;
+	}
 }
